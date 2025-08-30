@@ -1,17 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>E-Rickshaw Ads</title>
+  <title>E-Rickshaw Ads Player</title>
   <style>
-    body { margin: 0; background: black; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-    video { width: 100vw; height: 100vh; object-fit: cover; display: none; }
+    body, html {
+      margin: 0;
+      padding: 0;
+      background: black;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     #loader {
       color: white;
       font-size: 24px;
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+    video {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      display: none;
     }
   </style>
 </head>
@@ -21,8 +32,7 @@
 
   <script>
     const ads = [
-      "video1.mp4",
-      "video1.mp4"
+      "https://www.dropbox.com/scl/fi/i4p7px8aaroxd8nusw14w/Krishna_Janmashtami_WhatsApp_status___Janmashtami_4k_Status___happy_Janmashtami_Status_Video-720p.mp4?rlkey=x4duel138wl2n4t86rx37ioyf&dl=1"
     ];
 
     let index = 0;
@@ -47,10 +57,10 @@
       playVideo();
     };
 
-    // First play
+    // Start first video
     playVideo();
 
-    // Unmute on click
+    // Enable sound on user tap
     document.body.addEventListener('click', function() {
       player.muted = false;
       player.play();
