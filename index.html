@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>E-Rickshaw Ads</title>
+  <style>
+    body { margin: 0; background: black; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    video { width: 100vw; height: 100vh; object-fit: cover; display: none; }
+    #loader {
+      color: white;
+      font-size: 24px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+<body>
+  <div id="loader">Loading...</div>
+  <video id="adPlayer" playsinline autoplay muted></video>
+
+  <script>
+    const ads = [
+      "video1.mp4",
+      "video1.mp4"
+    ];
+
+    let index = 0;
+    const player = document.getElementById("adPlayer");
+    const loader = document.getElementById("loader");
+
+    function playVideo() {
+      loader.style.display = "block";
+      player.style.display = "none";
+      player.src = ads[index];
+      player.load();
+
+      player.oncanplay = function() {
+        loader.style.display = "none";
+        player.style.display = "block";
+        player.play();
+      };
+    }
+
+    player.onended = function() {
+      index = (index + 1) % ads.length;
+      playVideo();
+    };
+
+    // First play
+    playVideo();
+
+    // Unmute on click
+    document.body.addEventListener('click', function() {
+      player.muted = false;
+      player.play();
+    }, { once: true });
+  </script>
+</body>
+</html>
